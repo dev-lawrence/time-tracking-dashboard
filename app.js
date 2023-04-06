@@ -61,18 +61,18 @@ const renderCards = (clickedOptions) => {
   }
 
   // demo start
-  // setTimeout(() => {
-  fetch('data.json')
-    .then((res) => res.json())
-    .then((data) => {
-      data.forEach((data) => {
-        const name = data.title;
-        const activityClass = name.toLowerCase().replace(' ', '-');
-        const timeFramesData = data.timeframes[clickedOptions];
-        const previousTimeFramesData = calcTime(clickedOptions);
-        const section = document.createElement('section');
-        section.classList.add('activity', activityClass);
-        section.innerHTML = `
+  setTimeout(() => {
+    fetch('data.json')
+      .then((res) => res.json())
+      .then((data) => {
+        data.forEach((data) => {
+          const name = data.title;
+          const activityClass = name.toLowerCase().replace(' ', '-');
+          const timeFramesData = data.timeframes[clickedOptions];
+          const previousTimeFramesData = calcTime(clickedOptions);
+          const section = document.createElement('section');
+          section.classList.add('activity', activityClass);
+          section.innerHTML = `
      
     
         <div class="activity__bg">
@@ -93,13 +93,13 @@ const renderCards = (clickedOptions) => {
     
     `;
 
-        activityReport.appendChild(section);
+          activityReport.appendChild(section);
+        });
       });
-    });
 
-  isLoading = false;
-  activityReport.innerHTML = '';
-  // }, 2000);
+    isLoading = false;
+    activityReport.innerHTML = '';
+  }, 1000);
 };
 
 buttons.forEach((button) => {
