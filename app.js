@@ -64,8 +64,8 @@ buttons.forEach((button) => {
   });
 });
 
-const showActivity = () => {
-  buttons[0].click();
-};
+// const showActivity = () => {
+//   buttons[0].click();
+// };
 
-window.addEventListener('DOMContentLoaded', showActivity);
+// window.addEventListener('DOMContentLoaded', showActivity);
