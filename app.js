@@ -12,9 +12,56 @@ const calcTime = (option) => {
   if (option === 'monthly') return 'Last Month';
 };
 
+let isLoading = true;
 const renderCards = (clickedOptions) => {
   clearActivities();
 
+  //   setTimeout(() => {
+  //     fetch('data.json')
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         data.forEach((data) => {
+  //           const name = data.title;
+  //           const activityClass = name.toLowerCase().replace(' ', '-');
+  //           const timeFramesData = data.timeframes[clickedOptions];
+  //           const previousTimeFramesData = calcTime(clickedOptions);
+  //           const section = document.createElement('section');
+  //           section.classList.add('activity', activityClass);
+  //           section.innerHTML = `
+
+  //           <div class="activity__bg">
+  //               <img src="./images/icon-${activityClass}.svg" alt="" />
+  //           </div>
+
+  //           <div class="activity__content">
+  //               <div class="activity__info">
+  //                   <span class="title">${name}</span>
+  //                   <button><i class="fa-solid fa-ellipsis"></i></button>
+  //               </div>
+  //               <div class="activity__timeframes">
+  //                   <h2 class="current">${timeFramesData.current}hrs</h2>
+  //                   <p>${previousTimeFramesData} - <span class="previous">${timeFramesData.previous}hrs</span></p>
+  //               </div>
+  //           </div>
+
+  //       `;
+
+  //           activityReport.appendChild(section);
+  //           isLoading != true;
+  //         });
+  //       });
+  //   }, 2000);
+  // };
+
+  if (isLoading) {
+    activityReport.innerHTML = `
+       <div>Loading....</div>
+     `;
+    // console.log(isLoading);
+  }
+
+  // demo start
+  // setTimeout(() => {
   fetch('data.json')
     .then((res) => res.json())
     .then((data) => {
@@ -26,29 +73,33 @@ const renderCards = (clickedOptions) => {
         const section = document.createElement('section');
         section.classList.add('activity', activityClass);
         section.innerHTML = `
-         
-        
-            <div class="activity__bg">
-                <img src="./images/icon-${activityClass}.svg" alt="" />
-            </div>
+     
+    
+        <div class="activity__bg">
+            <img src="./images/icon-${activityClass}.svg" alt="" />
+        </div>
 
-            <div class="activity__content">
-                <div class="activity__info">
-                    <span class="title">${name}</span>
-                    <button><i class="fa-solid fa-ellipsis"></i></button>
-                </div>
-                <div class="activity__timeframes">
-                    <h2 class="current">${timeFramesData.current}hrs</h2>
-                    <p>${previousTimeFramesData} - <span class="previous">${timeFramesData.previous}hrs</span></p>
-                </div>
+        <div class="activity__content">
+            <div class="activity__info">
+                <span class="title">${name}</span>
+                <button><i class="fa-solid fa-ellipsis"></i></button>
             </div>
-   
-        
-        `;
+            <div class="activity__timeframes">
+                <h2 class="current">${timeFramesData.current}hrs</h2>
+                <p>${previousTimeFramesData} - <span class="previous">${timeFramesData.previous}hrs</span></p>
+            </div>
+        </div>
+
+    
+    `;
 
         activityReport.appendChild(section);
       });
     });
+
+  isLoading = false;
+  activityReport.innerHTML = '';
+  // }, 2000);
 };
 
 buttons.forEach((button) => {
@@ -64,8 +115,8 @@ buttons.forEach((button) => {
   });
 });
 
-// const showActivity = () => {
-//   buttons[0].click();
-// };
+const showActivity = () => {
+  buttons[0].click();
+};
 
-// window.addEventListener('DOMContentLoaded', showActivity);
+window.addEventListener('DOMContentLoaded', showActivity);
